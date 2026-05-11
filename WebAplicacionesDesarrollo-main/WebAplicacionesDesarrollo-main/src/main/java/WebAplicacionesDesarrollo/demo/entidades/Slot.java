@@ -1,0 +1,35 @@
+package WebAplicacionesDesarrollo.demo.entidades;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
+public class Slot {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private Long id;
+
+    @Column(nullable = false)
+    private LocalDateTime inicio;
+
+    @Column(nullable = false)
+    private LocalDateTime fin;
+
+    @Column(nullable = false)
+    private boolean eliminado;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "convocatoria_id", nullable = false)
+    private Convocatoria convocatoria;
+}
